@@ -1,21 +1,19 @@
-import {ArgumentMatcher} from '../arguments';
-import {Optional, Invalid, Valid} from '../option';
+import { ArgumentMatcher } from '../arguments';
+import { Optional, Invalid, Valid } from '../option';
 
 export class CommandTester {
     protected commandName: string;
-    protected argumentMatcher: ArgumentMatcher|null;
+    protected argumentMatcher: ArgumentMatcher | null;
 
-    constructor(commandName: string, argumentMatcher: ArgumentMatcher|null = null) {
+    constructor(commandName: string, argumentMatcher: ArgumentMatcher | null = null) {
         this.argumentMatcher = argumentMatcher;
         this.commandName = commandName;
     }
 
     public isCommand(message: string): Optional<string[]> {
-        const split: string[] = [...message.matchAll(/([^ ]+|'.+?')/g)].map(
-            (val: RegExpMatchArray): string => val[1]
-        );
+        const split: string[] = [...message.matchAll(/([^ ]+|'.+?')/g)].map((val: RegExpMatchArray): string => val[1]);
 
-        if (split[0] != ('!' + this.commandName)) {
+        if (split[0] != '!' + this.commandName) {
             return new Invalid();
         }
 

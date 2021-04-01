@@ -1,19 +1,19 @@
 export interface Optional<T> {
-    valid: boolean,
-    unwrap: () => T
+    valid: boolean;
+    unwrap: () => T;
 }
 
 export class Valid<T> implements Optional<T> {
     private value: T;
-    
+
     valid = true;
-    
+
     constructor(value: T) {
-        this.value = value
+        this.value = value;
     }
 
     unwrap(): T {
-        return this.value
+        return this.value;
     }
 }
 
