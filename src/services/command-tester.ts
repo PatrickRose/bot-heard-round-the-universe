@@ -1,5 +1,6 @@
-import { ArgumentMatcher } from '../arguments';
+import { ArgumentMatcher } from '../arguments/argument-matcher';
 import { Optional, Invalid, Valid } from '../option';
+import { Message } from 'discord.js';
 
 export class CommandTester {
     protected commandName: string;
@@ -10,7 +11,9 @@ export class CommandTester {
         this.commandName = commandName;
     }
 
-    public isCommand(message: string): Optional<string[]> {
+    public isCommand(discordMessage: Message): Optional<string[]> {
+        const message = discordMessage.content;
+
         const split: string[] = [...message.matchAll(/([^ ]+|'.+?')/g)].map((val: RegExpMatchArray): string => val[1]);
 
         if (split[0] != '!' + this.commandName) {
@@ -22,7 +25,7 @@ export class CommandTester {
         if (this.argumentMatcher === null) {
             return args.length == 0 ? new Valid([]) : new Invalid();
         } else {
-            return this.argumentMatcher.matches(args) ? new Valid(args) : new Invalid();
+            return this.argumentMatcher.matches(discordMessage, args) ? new Valid(args) : new Invalid();
         }
     }
 }

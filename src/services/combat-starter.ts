@@ -14,7 +14,7 @@ export class CombatStarter implements BaseCommand {
     }
 
     shouldHandle(message: Message): Optional<string[]> {
-        return this.commandTester.isCommand(message.content);
+        return this.commandTester.isCommand(message);
     }
 
     handle(message: Message, args: string[]): Promise<Message | Message[]> {
