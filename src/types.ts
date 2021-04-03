@@ -7,9 +7,9 @@ export const TYPES = {
     MessageHandlers: Symbol('MessageHandlers'),
     CombatStarter: Symbol('CombatStarter'),
     CommandTester: {
-        CombatStarter: Symbol('CombatStarter'),
+        CombatStarter: Symbol('CommandTester.CombatStarter'),
     },
     Arguments: {
-        CombatStarter: Symbol('CombatStarter'),
+        CombatStarter: Symbol('Arguments.CombatStarter'),
     },
 };
